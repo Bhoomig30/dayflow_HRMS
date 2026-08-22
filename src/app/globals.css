@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+/*
+  Dayflow design tokens.
+
+  Palette hierarchy (from the brief):
+    Chinese Black #0A1123  -> primary background / sidebar
+    American Blue #3A3E6C  -> primary action
+    Ube         #8387C3    -> accent / highlight
+    Cadet Grey  #959BB5    -> muted borders / secondary surfaces
+    Cool Grey   #8A8CAC    -> secondary text / iconography
+    light neutral           -> primary text, for contrast on the dark ground
+
+  Status colors (present/absent/leave/pending/approved/rejected, etc.) are
+  functional, not brand colors — accessibility takes priority over strict
+  palette purity there, and every status is paired with a text label/icon,
+  never color alone.
+*/
+
+:root {
+  --df-bg: #0a1123;
+  --df-bg-elevated: #0d1530;
+  --df-surface: #121a38;
+  --df-surface-hover: #17204a;
+  --df-border: rgba(149, 155, 181, 0.16);
+  --df-border-strong: rgba(149, 155, 181, 0.3);
+
+  --df-text-primary: #f3f4fa;
+  --df-text-secondary: #a7abc9;
+  --df-text-muted: #7d81a0;
+
+  --df-primary: #3a3e6c;
+  --df-primary-hover: #464b82;
+  --df-primary-text: #f3f4fa;
+
+  --df-accent: #8387c3;
+  --df-accent-soft: rgba(131, 135, 195, 0.16);
+
+  --df-success: #34b37a;
+  --df-success-soft: rgba(52, 179, 122, 0.14);
+  --df-warning: #d9a441;
+  --df-warning-soft: rgba(217, 164, 65, 0.14);
+  --df-danger: #e2685f;
+  --df-danger-soft: rgba(226, 104, 95, 0.14);
+  --df-info: #6d9bd9;
+  --df-info-soft: rgba(109, 155, 217, 0.14);
+
+  --df-radius-sm: 8px;
+  --df-radius-md: 12px;
+  --df-radius-lg: 16px;
+  --df-radius-xl: 20px;
+}
+
+@theme inline {
+  --color-bg: var(--df-bg);
+  --color-bg-elevated: var(--df-bg-elevated);
+  --color-surface: var(--df-surface);
+  --color-surface-hover: var(--df-surface-hover);
+  --color-border: var(--df-border);
+  --color-text-primary: var(--df-text-primary);
+  --color-text-secondary: var(--df-text-secondary);
+  --color-text-muted: var(--df-text-muted);
+  --color-primary: var(--df-primary);
+  --color-primary-hover: var(--df-primary-hover);
+  --color-accent: var(--df-accent);
+  --color-success: var(--df-success);
+  --color-warning: var(--df-warning);
+  --color-danger: var(--df-danger);
+  --color-info: var(--df-info);
+}
+
+* {
+  border-color: var(--df-border);
+}
+
+html,
+body {
+  background: var(--df-bg);
+  color: var(--df-text-primary);
+  min-height: 100%;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--df-accent-soft);
+  color: var(--df-text-primary);
+}
+
+/* Scrollbars — subtle, consistent with the muted palette */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--df-border-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--df-border-strong);
+  border-radius: 8px;
+}
+
+/* Visible, accessible focus state everywhere. */
+:focus-visible {
+  outline: 2px solid var(--df-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@keyframes df-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.df-animate-in {
+  animation: df-fade-in 0.18s ease-out;
+}
