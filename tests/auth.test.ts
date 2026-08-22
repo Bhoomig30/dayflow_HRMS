@@ -157,28 +157,3 @@ describe("auth: protected routes", () => {
     expect(body.error.code).toBe("BAD_REQUEST");
   });
 });
-const express = require("express");
-
-const {
-  signup,
-  verifyEmail,
-  login,
-  getMe,
-  logout,
-} = require("../controllers/authController");
-
-const protect = require("../middleware/authMiddleware");
-
-const router = express.Router();
-
-router.post("/signup", signup);
-
-router.post("/verify-email", verifyEmail);
-
-router.post("/login", login);
-
-router.get("/me", protect, getMe);
-
-router.post("/logout", logout);
-
-module.exports = router;
