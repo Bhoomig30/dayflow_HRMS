@@ -13,7 +13,7 @@ async function login(page, identifier, password) {
   await page.waitForLoadState("networkidle");
 }
 
-async function shot(page, name) {
+  async function shot(page, name) {
   await page.waitForTimeout(400);
   await page.screenshot({ path: path.join(OUT, name), fullPage: true });
   console.log("saved", name);
